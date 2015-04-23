@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="tink.skeleton">
+<html ng-app="tink.accordion">
 <head>
   <meta charset="utf-8">
   <title>Tink module</title>
@@ -7,15 +7,191 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/tink-core/assets/tink/tink.css" />
   <!-- endbower -->
 </head>
 <body>
 
-<tink-skeleton data-text="Skeleton is working fine!"></tink-skeleton>
+<div class="container" ng-controller="ctrl">
+	<h1>Accordion</h1>
+	<hr>
+
+  <div class="margin-bottom">
+    <tink-accordion data-start-open="true">
+      <tink-accordion-panel data-heading="Basic accordion">
+        <h3>Example</h3>
+        <p>Click on the header of this panel to see the accordion in action.</p>
+
+        <h3>Usage</h3>
+        <p>Wrap <code>&lt;tink-accordion&gt;</code> around at least one <code>&lt;tink-accordion-panel&gt;</code> to get the most basic version of an accordion.</p>
+        <h3>Options</h3>
+        <h4>Accordion</h4>
+        <div class="table-responsive">
+          <table class="table-dev">
+            <thead>
+              <tr>
+                <th>Attr</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>data-start-open</td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Whether the accordion panels are open on load or not. This can be overriden at the panel level.</td>
+              </tr>
+              <tr>
+                <td>data-one-at-a-time</td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Whether only one panel can be open at once.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Accordion panel</h4>
+        <div class="table-responsive">
+          <table class="table-dev">
+            <thead>
+              <tr>
+                <th>Attr</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>data-is-collapsed</td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Whether the panel is collapsed or not.</td>
+              </tr>
+              <tr>
+                <td>data-heading</td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>The title of the accordion.</td>
+              </tr>
+              <tr>
+                <td>data-onclick</td>
+                <td><code>function</code></td>
+                <td><code>undefined</code></td>
+                <td>Callback function that will be triggered when the accordion heading is clicked.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="callout">
+            <p><strong>Important!</strong> <code>data-is-collapsed</code> compares by reference, not value. Make sure it's part of an object that can be referenced.</p>
+          </div>
+        </div>
+      </tink-accordion-panel>
+    </tink-accordion>
+  </div>
+
+  <div class="margin-bottom">
+    <tink-accordion>
+      <tink-accordion-panel data-heading="Accordion with callback function" data-onclick="openAccordion">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Accordion code:</p>
+            </div>
+        </div>
+      </tink-accordion-panel>
+    </tink-accordion>
+  </div>
+
+  <div class="margin-bottom">
+    <tink-accordion>
+      <tink-accordion-panel data-is-collapsed="accordion.collapsed" data-heading="Externally triggered accordion">
+        <div class="row">
+          <div class="col-md-4">
+            <p>Accordion code:</p>
+
+          </div>
+          <div class="col-md-4">
+            <p>Code to trigger accordion:</p>
+
+          </div>
+          <div class="col-md-4">
+            <p>Controller code:</p>
+
+          </div>
+        </div>
+      </tink-accordion-panel>
+    </tink-accordion>
+    <button data-ng-click="accordion.collapsed=!accordion.collapsed" class="margin-bottom margin-top">
+      <span data-ng-if="accordion.collapsed">Open accordion</span>
+      <span data-ng-if="!accordion.collapsed">Close accordion</span>
+    </button>
+  </div>
+
+  <div class="panel">
+    <header class="panel-heading">
+      <h1 class="panel-title">Multiple accordion panels</h1>
+    </header>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Place multiple instances of the <code>&lt;tink-accordion-panel&gt;</code> inside a <code>&lt;tink-accordion-&gt;</code> wrapper.</p>
+          <div class="margin-bottom">
+            <tink-accordion data-start-open="false" data-one-at-a-time="true">
+              <tink-accordion-panel data-is-collapsed="true" data-heading="First accordion panel">
+                <p>Only the first panel should be open.</p>
+              </tink-accordion-panel>
+              <tink-accordion-panel data-is-collapsed="true" data-heading="Second accordion panel">
+                <p>Only the second panel should be open.</p>
+              </tink-accordion-panel>
+              <tink-accordion-panel data-is-collapsed="true" data-heading="Third accordion panel">
+                <p>Only the third panel should be open.</p>
+              </tink-accordion-panel>
+            </tink-accordion>
+          </div>
+          <p>None of the above three panels can be open simultaneously.</p>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/tink-api-javascript/dist/tink-api-javascript.js"></script>
+<script src="bower_components/tink-api-angular/dist/tink-api-angular.js"></script>
 <!-- endbower -->
 
-<script src="scripts/directives/skeleton.js"></script>
+<script src="scripts/directives/tink-accordion-angular.js"></script>
+<script src="scripts/controllers/tink-accordion-angular.js"></script>
+<script>
+	var myApp = angular.module('tink.accordion');
+
+	myApp.controller('ctrl', ['$scope', function($scope) {
+	  $scope.accordion = {collapsed:false};
+	  $scope.openAccordion = function(status,go){
+	  	console.log('triggerd',status);
+	  	if(status === 'loading'){
+	  		setTimeout(function(){
+	  			go();
+	  		},3000);
+
+	  	}
+	  }
+	}]);
+</script>
 </body>
 </html>
