@@ -63,19 +63,23 @@
         oneAtATime:'='
       },
       template: '<div class="accordion" ng-transclude></div>',
-      link:function(scope,element, attrs, accordionCtrl){
-        var options = {};
-        angular.forEach(['oneAtATime','startOpen'], function(key) {
-          if(angular.isDefined(attrs[key])) {
-            if(typeof scope[key] === 'boolean'){
-              options[key] = scope[key];
-            }else{
-              options[key] = attrs[key] === 'true';
-            }
+      compile: function compile(tElement, tAttrs, transclude) {
+        return {
+          pre: function preLink(scope,element, attrs, accordionCtrl) {
+            var options = {};
+            angular.forEach(['oneAtATime','startOpen'], function(key) {
+              if(angular.isDefined(attrs[key])) {
+                if(typeof scope[key] === 'boolean'){
+                  options[key] = scope[key];
+                }else{
+                  options[key] = attrs[key] === 'true';
+                }
+              }
+            });
+            var accordionElem = tinkApi.accordion(element);
+            accordionCtrl.init(accordionElem,element,options);
           }
-        });
-        var accordionElem = tinkApi.accordion(element);
-        accordionCtrl.init(accordionElem,element,options);
+        }
       }
     };
   }])
