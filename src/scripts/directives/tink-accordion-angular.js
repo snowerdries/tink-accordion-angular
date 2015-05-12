@@ -32,7 +32,7 @@
             var accordionElem = tinkApi.accordion(element);
             accordionCtrl.init(accordionElem,element,options);
           }
-        }
+        };
       }
     };
   }])
@@ -46,7 +46,8 @@
       scope: {
         heading: '@',               // Interpolate the heading attribute onto this scope
         onclick:'=?',
-        isCollapsed:'='
+        isCollapsed:'=',
+        hasPadding:'@'
       },
       link: function(scope, element, attrs, accordionCtrl) {
        var states = {closed:1,open:2,loading:0};
@@ -56,6 +57,9 @@
         if(!onFunc){
           element.addClass('no-call-back');
         }
+
+        // The panel has padding or not?
+        scope.hasPadding = scope.hasPadding !== "false";
 
         scope.toggleOpen = function(){
           if(state === states.closed){

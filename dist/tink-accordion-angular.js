@@ -79,7 +79,7 @@
             var accordionElem = tinkApi.accordion(element);
             accordionCtrl.init(accordionElem,element,options);
           }
-        }
+        };
       }
     };
   }])
@@ -93,7 +93,8 @@
       scope: {
         heading: '@',               // Interpolate the heading attribute onto this scope
         onclick:'=?',
-        isCollapsed:'='
+        isCollapsed:'=',
+        hasPadding:'@'
       },
       link: function(scope, element, attrs, accordionCtrl) {
        var states = {closed:1,open:2,loading:0};
@@ -103,6 +104,9 @@
         if(!onFunc){
           element.addClass('no-call-back');
         }
+
+        // The panel has padding or not?
+        scope.hasPadding = scope.hasPadding !== "false";
 
         scope.toggleOpen = function(){
           if(state === states.closed){
@@ -219,7 +223,7 @@
   'use strict';
 
   $templateCache.put('templates/tinkAccordionPanel.html',
-    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <h4 class=panel-title> <span>{{heading}}</span> </h4> </div> </a> <div class=accordion-panel-body> <div class=accordion-loaded-content ng-transclude> <p>DOM content comes here</p> </div> </div> </section>"
+    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <h4 class=panel-title> <span>{{heading}}</span> </h4> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content ng-transclude> <p>DOM content comes here</p> </div> </div> </section>"
   );
 
 }]);
