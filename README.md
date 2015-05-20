@@ -49,6 +49,13 @@ Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most
 
 #### Accordion
 
+
+Attr | Type | Default | Details
+--- | --- | --- | ---
+data-start-open | `boolean` | `false` | Whether the accordion panels are open on load or not. This can be overriden at the panel level.
+data-one-at-a-time | `boolean` | `false` | Whether only one panel can be open at once.
+
+
 <table class="table-dev">
   <thead>
     <tr>
