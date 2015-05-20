@@ -35,7 +35,8 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 ### tink-accordion
 
 ### Component
-*Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most basic version of an accordion.*
+
+Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most basic version of an accordion.
 
 ```html
 <tink-accordion data-start-open="true">
@@ -44,6 +45,7 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 ```
 
 ### Options
+
 #### Accordion
 
 <table class="table-dev">
@@ -111,14 +113,14 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 
 ### Component
 
-Accordion code:
+######Accordion code:######
 ```html
 <tink-accordion>
   <tink-accordion-panel data-heading="Accordion with callback function" data-onclick="openAccordion"></tink-accordion-panel>
 </tink-accordion>
 ```
 
-Controller code:
+######Controller code:######
 ```javascript
 scope.openAccordion = function(action, next) {
   if (action === 'loading') {
@@ -127,19 +129,18 @@ scope.openAccordion = function(action, next) {
 }
 ```
 
-
 ### tink-accordion externally triggered
 
 ### Component
 
-Accordion code:
+######Accordion code:######
 ```html
 <tink-accordion>
   <tink-accordion-panel data-is-collapsed="accordion.collapsed" data-heading="Externally triggered accordion"></tink-accordion-panel>
 </tink-accordion>
 ```
 
-Code to trigger accordion:
+######Code to trigger accordion:######
 ```html
 <button data-ng-click="accordion.collapsed=!accordion.collapsed">
   <span data-ng-if="accordion.collapsed">Open accordion</span>
@@ -147,7 +148,7 @@ Code to trigger accordion:
 </button>
 ```
 
-Controller code:
+######Controller code:######
 ```javascript
 $scope.accordion = {
   collapsed: true
@@ -160,7 +161,7 @@ $scope.accordion = {
 
 *Place multiple instances of the `tink-accordion-panel` inside a `tink-accordion` wrapper.*
 
-Accordion code:
+######Accordion code:######
 ```html
 <tink-accordion data-start-open="false" data-one-at-a-time="true">
   <tink-accordion-panel data-is-collapsed="true" data-heading="First accordion panel">
