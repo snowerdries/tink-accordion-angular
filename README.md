@@ -6,7 +6,7 @@ v1.1.0
 
 The Tink accordion Angular directive gives you the ability to open/close panels.
 
-Tink is an in-house developed easy-to-use front end framework for quick prototyping and simple deployment of all kinds of websites and apps, keeping a uniform and consistent look and feel.
+Tink is an in-house developed easy-to-use front-end framework for quick prototyping and simple deployment of all kinds of websites and apps, keeping a uniform and consistent look and feel.
 
 ## Setup
 
@@ -20,9 +20,158 @@ Tink is an in-house developed easy-to-use front end framework for quick prototyp
 1. Go to the root of your project and type the following command in your terminal:
    `bower install tink-accordion-angular --save`
 
-2. Include `dist/tink-accordion-angular.js` and its necessary dependencies in your project.
+2. Add the following files to your project:
 
-3. On http://tink.digipolis.be you will find all necessary documentation.
+  `<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />` (or one of the Tink themes)
+
+  `<script src="bower_components/tink-accordion-angular/dist/tink-accordion-angular.js"></script>`
+
+
+----------
+
+
+## How to use
+
+### tink-accordion
+
+### Component
+
+```html
+<tink-accordion data-start-open="true">
+  <tink-accordion-panel data-heading="Basic accordion"></tink-accordion-panel>
+</tink-accordion>
+```
+
+### Options
+
+#### Accordion
+
+<table class="table-dev">
+  <thead>
+    <tr>
+      <th>Attr</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>data-start-open</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Whether the accordion panels are open on load or not. This can be overriden at the panel level.</td>
+    </tr>
+    <tr>
+      <td>data-one-at-a-time</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Whether only one panel can be open at once.</td>
+    </tr>
+  </tbody>
+</table>
+
+#### Accordion panel
+
+<table class="table-dev">
+  <thead>
+    <tr>
+      <th>Attr</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>data-is-collapsed</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Whether the panel is collapsed or not.</td>
+    </tr>
+    <tr>
+      <td>data-heading</td>
+      <td>string</td>
+      <td>''</td>
+      <td>The title of the accordion.</td>
+    </tr>
+    <tr>
+      <td>data-onclick</td>
+      <td>function</td>
+      <td>undefined</td>
+      <td>Callback function that will be triggered when the accordion heading is clicked.</td>
+    </tr>
+  </tbody>
+</table>
+
+> Important! data-is-collapsed compares by reference, not value. Make sure it's part of an object that can be referenced.
+
+### tink-accordion with callback function
+
+### Component
+
+Accordion code:
+```html
+<tink-accordion>
+  <tink-accordion-panel data-heading="Accordion with callback function" data-onclick="openAccordion"></tink-accordion-panel>
+</tink-accordion>
+```
+
+Controller code:
+```javascript
+scope.openAccordion = function(action, next) {
+  if (action === 'loading') {
+    // Do something here
+  }
+}
+```
+
+### tink-accordion externally triggered
+
+### Component
+
+Accordion code:
+```html
+<tink-accordion>
+  <tink-accordion-panel data-is-collapsed="accordion.collapsed" data-heading="Externally triggered accordion"></tink-accordion-panel>
+</tink-accordion>
+```
+
+Code to trigger accordion:
+```html
+<button data-ng-click="accordion.collapsed=!accordion.collapsed">
+  <span data-ng-if="accordion.collapsed">Open accordion</span>
+  <span data-ng-if="!accordion.collapsed">Close accordion</span>
+</button>
+```
+
+Controller code:
+```javascript
+$scope.accordion = {
+  collapsed: true
+};
+```
+
+### tink-accordion with multiple panels
+
+### Component
+
+> Place multiple instances of the <tink-accordion-panel> inside a <tink-accordion-> wrapper.
+
+Accordion code:
+```html
+<tink-accordion data-start-open="false" data-one-at-a-time="true">
+  <tink-accordion-panel data-is-collapsed="true" data-heading="First accordion panel">
+    <p>Only the first panel should be open.</p>
+  </tink-accordion-panel>
+  <tink-accordion-panel data-is-collapsed="true" data-heading="Second accordion panel">
+    <p>Only the second panel should be open.</p>
+  </tink-accordion-panel>
+  <tink-accordion-panel data-is-collapsed="true" data-heading="Third accordion panel">
+    <p>Only the third panel should be open.</p>
+  </tink-accordion-panel>
+</tink-accordion>
+```
 
 ## Contribution guidelines
 
