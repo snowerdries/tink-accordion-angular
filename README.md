@@ -49,70 +49,18 @@ Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most
 
 #### Accordion
 
-
 Attr | Type | Default | Details
 --- | --- | --- | ---
 data-start-open | `boolean` | `false` | Whether the accordion panels are open on load or not. This can be overriden at the panel level.
 data-one-at-a-time | `boolean` | `false` | Whether only one panel can be open at once.
 
-
-<table class="table-dev">
-  <thead>
-    <tr>
-      <th>Attr</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>data-start-open</td>
-      <td>`boolean`</td>
-      <td>`false`</td>
-      <td>Whether the accordion panels are open on load or not. This can be overriden at the panel level.</td>
-    </tr>
-    <tr>
-      <td>data-one-at-a-time</td>
-      <td>`boolean`</td>
-      <td>`false`</td>
-      <td>Whether only one panel can be open at once.</td>
-    </tr>
-  </tbody>
-</table>
-
 #### Accordion panel
 
-<table class="table-dev">
-  <thead>
-    <tr>
-      <th>Attr</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>data-is-collapsed</td>
-      <td>`boolean`</td>
-      <td>`false`</td>
-      <td>Whether the panel is collapsed or not.</td>
-    </tr>
-    <tr>
-      <td>data-heading</td>
-      <td>`string`</td>
-      <td>`''`</td>
-      <td>The title of the accordion.</td>
-    </tr>
-    <tr>
-      <td>data-onclick</td>
-      <td>`function`</td>
-      <td>`undefined`</td>
-      <td>Callback function that will be triggered when the accordion heading is clicked.</td>
-    </tr>
-  </tbody>
-</table>
+Attr | Type | Default | Details
+--- | --- | --- | ---
+data-is-collapsed | `boolean` | `false` | Whether the panel is collapsed or not.
+data-heading | `string` | `''` | The title of the accordion.
+data-onclick | `function` | `undefined` | Callback function that will be triggered when the accordion heading is clicked.
 
 > Important! `data-is-collapsed` compares by reference, not value. Make sure it's part of an object that can be referenced.
 
