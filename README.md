@@ -113,14 +113,14 @@ Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most
 
 ### Component
 
-######Accordion code:######
+###### Accordion code: ######
 ```html
 <tink-accordion>
   <tink-accordion-panel data-heading="Accordion with callback function" data-onclick="openAccordion"></tink-accordion-panel>
 </tink-accordion>
 ```
 
-######Controller code:######
+###### Controller code: ######
 ```javascript
 scope.openAccordion = function(action, next) {
   if (action === 'loading') {
@@ -133,14 +133,14 @@ scope.openAccordion = function(action, next) {
 
 ### Component
 
-######Accordion code:######
+###### Accordion code: ######
 ```html
 <tink-accordion>
   <tink-accordion-panel data-is-collapsed="accordion.collapsed" data-heading="Externally triggered accordion"></tink-accordion-panel>
 </tink-accordion>
 ```
 
-######Code to trigger accordion:######
+###### Code to trigger accordion: ######
 ```html
 <button data-ng-click="accordion.collapsed=!accordion.collapsed">
   <span data-ng-if="accordion.collapsed">Open accordion</span>
@@ -148,7 +148,7 @@ scope.openAccordion = function(action, next) {
 </button>
 ```
 
-######Controller code:######
+###### Controller code: ######
 ```javascript
 $scope.accordion = {
   collapsed: true
@@ -159,9 +159,9 @@ $scope.accordion = {
 
 ### Component
 
-*Place multiple instances of the `tink-accordion-panel` inside a `tink-accordion` wrapper.*
+Place multiple instances of the `tink-accordion-panel` inside a `tink-accordion` wrapper.
 
-######Accordion code:######
+###### Accordion code: ######
 ```html
 <tink-accordion data-start-open="false" data-one-at-a-time="true">
   <tink-accordion-panel data-is-collapsed="true" data-heading="First accordion panel">
