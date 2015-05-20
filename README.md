@@ -35,6 +35,7 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 ### tink-accordion
 
 ### Component
+*Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most basic version of an accordion.*
 
 ```html
 <tink-accordion data-start-open="true">
@@ -43,7 +44,6 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 ```
 
 ### Options
-
 #### Accordion
 
 <table class="table-dev">
@@ -58,14 +58,14 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
   <tbody>
     <tr>
       <td>data-start-open</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
       <td>Whether the accordion panels are open on load or not. This can be overriden at the panel level.</td>
     </tr>
     <tr>
       <td>data-one-at-a-time</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
       <td>Whether only one panel can be open at once.</td>
     </tr>
   </tbody>
@@ -85,26 +85,27 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
   <tbody>
     <tr>
       <td>data-is-collapsed</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
       <td>Whether the panel is collapsed or not.</td>
     </tr>
     <tr>
       <td>data-heading</td>
-      <td>string</td>
-      <td>''</td>
+      <td>`string`</td>
+      <td>`''`</td>
       <td>The title of the accordion.</td>
     </tr>
     <tr>
       <td>data-onclick</td>
-      <td>function</td>
-      <td>undefined</td>
+      <td>`function`</td>
+      <td>`undefined`</td>
       <td>Callback function that will be triggered when the accordion heading is clicked.</td>
     </tr>
   </tbody>
 </table>
 
-> Important! data-is-collapsed compares by reference, not value. Make sure it's part of an object that can be referenced.
+> Important! `data-is-collapsed` compares by reference, not value. Make sure it's part of an object that can be referenced.
+
 
 ### tink-accordion with callback function
 
@@ -125,6 +126,7 @@ scope.openAccordion = function(action, next) {
   }
 }
 ```
+
 
 ### tink-accordion externally triggered
 
@@ -156,7 +158,7 @@ $scope.accordion = {
 
 ### Component
 
-> Place multiple instances of the <tink-accordion-panel> inside a <tink-accordion-> wrapper.
+*Place multiple instances of the `tink-accordion-panel` inside a `tink-accordion` wrapper.*
 
 Accordion code:
 ```html
