@@ -59,7 +59,7 @@ data-one-at-a-time | `boolean` | `false` | Whether only one panel can be open at
 Attr | Type | Default | Details
 --- | --- | --- | ---
 data-is-collapsed | `boolean` | `false` | Whether the panel is collapsed or not.
-data-heading | `string` | `''` | The title of the accordion.
+data-heading | `string` | `''` | The title of the accordion panel.
 data-onclick | `function` | `undefined` | Callback function that will be triggered when the accordion heading is clicked.
 
 > Important! `data-is-collapsed` compares by reference, not value. Make sure it's part of an object that can be referenced.
