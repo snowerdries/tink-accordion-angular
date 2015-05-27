@@ -61,6 +61,7 @@ Attr | Type | Default | Details
 data-is-collapsed | `boolean` | `false` | Whether the panel is collapsed or not.
 data-heading | `string` | `''` | The title of the accordion panel.
 data-onclick | `function` | `undefined` | Callback function that will be triggered when the accordion heading is clicked.
+data-has-padding | `boolean` | `true` | Whether the panel has padding or not.
 
 > Important! `data-is-collapsed` compares by reference, not value. Make sure it's part of an object that can be referenced.
 
