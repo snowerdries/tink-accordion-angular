@@ -223,7 +223,7 @@
   'use strict';
 
   $templateCache.put('templates/tinkAccordionPanel.html',
-    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <h4 class=panel-title> <span>{{heading}}</span> </h4> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content ng-transclude> <p>DOM content comes here</p> </div> </div> </section>"
+    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <span class=panel-title>{{heading}}</span> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content ng-transclude> <p>DOM content comes here</p> </div> </div> </section>"
   );
 
 }]);
