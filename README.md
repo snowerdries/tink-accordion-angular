@@ -27,7 +27,7 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 
   `<script src="bower_components/tink-accordion-angular/dist/tink-accordion-angular.js"></script>`
   
- 3. Add `tink.identitycardnumber` to your app module's dependency.
+3. Add `tink.identitycardnumber` to your app module's dependency.
 
   `angular.module('myApp', ['tink.identitycardnumber']);`
 
