@@ -1,6 +1,6 @@
 # Tink accordion Angular directive
 
-v1.1.2
+v1.1.3
 
 ## What is this repository for?
 
@@ -26,10 +26,12 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
   `<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />` (or one of the Tink themes)
 
   `<script src="bower_components/tink-accordion-angular/dist/tink-accordion-angular.js"></script>`
-  
-3. Add `tink.identitycardnumber` to your app module's dependency.
+
+3. Add `tink.identitycardnumber` and `tink.tinkApi` to your app module's dependency.
 
   `angular.module('myApp', ['tink.identitycardnumber']);`
+
+  `angular.module('myApp', ['tink.tinkApi']);`
 
 
 ----------
