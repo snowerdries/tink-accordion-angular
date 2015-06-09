@@ -23,19 +23,17 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 
 2. Add the following files to your project:
 
-  `<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />` (or one of the Tink themes)
+   `<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />` (or one of the Tink themes)
 
-  `<script src="bower_components/tink-accordion-angular/dist/tink-accordion-angular.js"></script>`
+   `<script src="bower_components/tink-accordion-angular/dist/tink-accordion-angular.js"></script>`
 
-  `<script src="bower_components/tink-api-javascript/dist/tink-api-javascript.js"></script>`
+   `<script src="bower_components/tink-api-javascript/dist/tink-api-javascript.js"></script>`
 
-  `<script src="bower_components/tink-api-angular/dist/tink-api-angular.js"></script>`
+   `<script src="bower_components/tink-api-angular/dist/tink-api-angular.js"></script>`
 
 3. Add `tink.accordion` and `tink.tinkApi` to your app module's dependency.
 
-  `angular.module('myApp', ['tink.accordion']);`
-
-  `angular.module('myApp', ['tink.tinkApi']);`
+   `angular.module('myApp', ['tink.accordion', 'tink.tinkApi']);`
 
 
 ----------
