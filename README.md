@@ -1,6 +1,6 @@
 # Tink accordion Angular directive
 
-v1.1.4
+v1.1.5
 
 ## What is this repository for?
 
@@ -36,14 +36,14 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
    `angular.module('myApp', ['tink.accordion', 'tink.tinkApi']);`
 
 
+
 ----------
+
 
 
 ## How to use
 
 ### tink-accordion
-
-### Component
 
 Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most basic version of an accordion.
 
@@ -76,8 +76,6 @@ data-has-padding | `boolean` | `true` | Whether the panel has padding or not.
 
 ### tink-accordion with callback function
 
-### Component
-
 ###### Accordion code: ######
 ```html
 <tink-accordion>
@@ -95,8 +93,6 @@ scope.openAccordion = function(action, next) {
 ```
 
 ### tink-accordion externally triggered
-
-### Component
 
 ###### Accordion code: ######
 ```html
@@ -122,8 +118,6 @@ $scope.accordion = {
 
 ### tink-accordion with multiple panels
 
-### Component
-
 Place multiple instances of the `tink-accordion-panel` inside a `tink-accordion` wrapper.
 
 ###### Accordion code: ######
@@ -140,6 +134,10 @@ Place multiple instances of the `tink-accordion-panel` inside a `tink-accordion`
   </tink-accordion-panel>
 </tink-accordion>
 ```
+
+###Example
+
+A working example can be found in [the Tink documentation](http://tink.digipolis.be/#/docs/directives/accordion#example).
 
 ## Contribution guidelines
 
