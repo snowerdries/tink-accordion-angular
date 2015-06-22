@@ -38,18 +38,38 @@
   }])
   .directive('tinkAccordionPanel', function() {
     return {
+      restrict:'EA',
+      priority: 1500.1,
+      compile:function(tElement){
+        var header = tElement.find('data-header');
+        var content = tElement.find('data-content');
+        console.log(tElement,tElement.find('.panel-title'))
+      }
+    }
+  })
+  .directive('tinkAccordionPanel', function() {
+    return {
       require:'^tinkAccordion',         // We need this directive to be inside an accordion group
       restrict:'EA',
+      priority: 1500,
       transclude:true,              // It transcludes the contents of the directive into the template
       replace: true,                // The element containing the directive will be replaced with the template
       templateUrl:'templates/tinkAccordionPanel.html',
-      scope: {
-        heading: '@',               // Interpolate the heading attribute onto this scope
+      scope: {             
         onclick:'=?',
         isCollapsed:'=',
         hasPadding:'@'
       },
-      link: function(scope, element, attrs, accordionCtrl) {
+      link: function(scope, element, attrs, accordionCtrl,transclude) {
+
+        transclude(function(clone){
+          var header = $(clone).filter('data-header');
+          var content = $(clone).filter('data-content');
+          console.log(header)
+          element.find('.panel-title').append(header);
+          element.find('.accordion-loaded-content').append(content);
+        },scope);
+
        var states = {closed:1,open:2,loading:0};
         var state = states.closed;
         var trackToggle;

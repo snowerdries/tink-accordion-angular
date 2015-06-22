@@ -14,6 +14,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
+## [1.2.0] - 2015-06-22
+
+### Changed
+- Changed <data-content> and <data-header> to use inside directive!
 
 
 ## [1.1.5] - 2015-06-11

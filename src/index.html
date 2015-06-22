@@ -18,7 +18,12 @@
 
   <div class="margin-bottom">
     <tink-accordion data-start-open="true">
-      <tink-accordion-panel data-heading="Basic accordion" data-has-padding="false">
+      <tink-accordion-panel data-heading="Basic accordion" data-has-padding="true">
+      <data-header>
+      basic accordion
+      </data-header>
+      <data-content>
+
         <h3>Example</h3>
         <p>Click on the header of this panel to see the accordion in action.</p>
 
@@ -89,25 +94,35 @@
             <p><strong>Important!</strong> <code>data-is-collapsed</code> compares by reference, not value. Make sure it's part of an object that can be referenced.</p>
           </div>
         </div>
+      </data-content>
       </tink-accordion-panel>
     </tink-accordion>
   </div>
 
   <div class="margin-bottom">
     <tink-accordion>
-      <tink-accordion-panel data-heading="Accordion with callback function" data-onclick="openAccordion">
+      <tink-accordion-panel data-onclick="openAccordion">
+      <data-header>
+        <h1>Accordion with callback function</h1>
+      </data-header>
+      <data-content>
         <div class="row">
           <div class="col-md-6">
             <p>Accordion code:</p>
             </div>
         </div>
+      </data-content>
       </tink-accordion-panel>
     </tink-accordion>
   </div>
 
   <div class="margin-bottom">
     <tink-accordion>
-      <tink-accordion-panel data-is-collapsed="accordion.collapsed" data-heading="Externally triggered accordion">
+      <tink-accordion-panel data-is-collapsed="accordion.collapsed">
+      <data-header>
+        Externally triggered accordion
+      </data-header>
+      <data-content>
         <div class="row">
           <div class="col-md-4">
             <p>Accordion code:</p>
@@ -122,6 +137,7 @@
 
           </div>
         </div>
+      </data-content>
       </tink-accordion-panel>
     </tink-accordion>
     <button data-ng-click="accordion.collapsed=!accordion.collapsed" class="margin-bottom margin-top">
@@ -140,14 +156,29 @@
           <p>Place multiple instances of the <code>&lt;tink-accordion-panel&gt;</code> inside a <code>&lt;tink-accordion-&gt;</code> wrapper.</p>
           <div class="margin-bottom">
             <tink-accordion data-start-open="false" data-one-at-a-time="true">
-              <tink-accordion-panel data-is-collapsed="true" data-heading="First accordion panel">
+              <tink-accordion-panel data-is-collapsed="true" >
+              <data-header>
+                First accordion panel
+              </data-header>
+              <data-content>
                 <p>Only the first panel should be open.</p>
+              </data-content>
               </tink-accordion-panel>
               <tink-accordion-panel data-is-collapsed="true" data-heading="Second accordion panel">
+                <data-header>
+                Second accordion panel
+              </data-header>
+              <data-content>
                 <p>Only the second panel should be open.</p>
+              </data-content>
               </tink-accordion-panel>
-              <tink-accordion-panel data-is-collapsed="true" data-heading="Third accordion panel">
+              <tink-accordion-panel data-is-collapsed="true">
+                <data-header>
+                Third accordion panel
+              </data-header>
+              <data-content>
                 <p>Only the third panel should be open.</p>
+              </data-content>
               </tink-accordion-panel>
             </tink-accordion>
           </div>

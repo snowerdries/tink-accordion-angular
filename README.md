@@ -49,7 +49,7 @@ Wrap `tink-accordion` around at least one `tink-accordion-panel` to get the most
 
 ```html
 <tink-accordion data-start-open="true">
-  <tink-accordion-panel data-heading="Basic accordion"></tink-accordion-panel>
+  <tink-accordion-panel></tink-accordion-panel>
 </tink-accordion>
 ```
 
@@ -67,7 +67,6 @@ data-one-at-a-time | `boolean` | `false` | Whether only one panel can be open at
 Attr | Type | Default | Details
 --- | --- | --- | ---
 data-is-collapsed | `boolean` | `false` | Whether the panel is collapsed or not.
-data-heading | `string` | `''` | The title of the accordion panel.
 data-onclick | `function` | `undefined` | Callback function that will be triggered when the accordion heading is clicked.
 data-has-padding | `boolean` | `true` | Whether the panel has padding or not.
 
@@ -79,7 +78,14 @@ data-has-padding | `boolean` | `true` | Whether the panel has padding or not.
 ###### Accordion code: ######
 ```html
 <tink-accordion>
-  <tink-accordion-panel data-heading="Accordion with callback function" data-onclick="openAccordion"></tink-accordion-panel>
+  <tink-accordion-panel data-onclick="openAccordion">
+  <data-header>
+    Accordion with callback function
+  </data-header>
+  <data-content>
+
+  </data-content>
+  </tink-accordion-panel>
 </tink-accordion>
 ```
 
@@ -97,7 +103,11 @@ scope.openAccordion = function(action, next) {
 ###### Accordion code: ######
 ```html
 <tink-accordion>
-  <tink-accordion-panel data-is-collapsed="accordion.collapsed" data-heading="Externally triggered accordion"></tink-accordion-panel>
+  <tink-accordion-panel data-is-collapsed="accordion.collapsed">
+  <data-header>
+    Externally triggered accordion
+  </data-header>
+  </tink-accordion-panel>
 </tink-accordion>
 ```
 
@@ -123,14 +133,29 @@ Place multiple instances of the `tink-accordion-panel` inside a `tink-accordion`
 ###### Accordion code: ######
 ```html
 <tink-accordion data-start-open="false" data-one-at-a-time="true">
-  <tink-accordion-panel data-is-collapsed="true" data-heading="First accordion panel">
+  <tink-accordion-panel data-is-collapsed="true" >
+  <data-header>
+    First accordion panel
+  </data-header>
+  <data-content>
     <p>Only the first panel should be open.</p>
+  </data-content>
   </tink-accordion-panel>
   <tink-accordion-panel data-is-collapsed="true" data-heading="Second accordion panel">
+    <data-header>
+    Second accordion panel
+  </data-header>
+  <data-content>
     <p>Only the second panel should be open.</p>
+  </data-content>
   </tink-accordion-panel>
-  <tink-accordion-panel data-is-collapsed="true" data-heading="Third accordion panel">
+  <tink-accordion-panel data-is-collapsed="true">
+    <data-header>
+    Third accordion panel
+  </data-header>
+  <data-content>
     <p>Only the third panel should be open.</p>
+  </data-content>
   </tink-accordion-panel>
 </tink-accordion>
 ```
