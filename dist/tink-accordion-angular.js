@@ -85,18 +85,38 @@
   }])
   .directive('tinkAccordionPanel', function() {
     return {
+      restrict:'EA',
+      priority: 1500.1,
+      compile:function(tElement){
+        var header = tElement.find('data-header');
+        var content = tElement.find('data-content');
+        console.log(tElement,tElement.find('.panel-title'))
+      }
+    }
+  })
+  .directive('tinkAccordionPanel', function() {
+    return {
       require:'^tinkAccordion',         // We need this directive to be inside an accordion group
       restrict:'EA',
+      priority: 1500,
       transclude:true,              // It transcludes the contents of the directive into the template
       replace: true,                // The element containing the directive will be replaced with the template
       templateUrl:'templates/tinkAccordionPanel.html',
-      scope: {
-        heading: '@',               // Interpolate the heading attribute onto this scope
+      scope: {             
         onclick:'=?',
         isCollapsed:'=',
         hasPadding:'@'
       },
-      link: function(scope, element, attrs, accordionCtrl) {
+      link: function(scope, element, attrs, accordionCtrl,transclude) {
+
+        transclude(function(clone){
+          var header = $(clone).filter('data-header');
+          var content = $(clone).filter('data-content');
+          console.log(header)
+          element.find('.panel-title').append(header);
+          element.find('.accordion-loaded-content').append(content);
+        },scope);
+
        var states = {closed:1,open:2,loading:0};
         var state = states.closed;
         var trackToggle;
@@ -223,7 +243,7 @@
   'use strict';
 
   $templateCache.put('templates/tinkAccordionPanel.html',
-    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <span class=panel-title>{{heading}}</span> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content ng-transclude> <p>DOM content comes here</p> </div> </div> </section>"
+    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <span class=panel-title></span> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content> </div> </div> </section>"
   );
 
 }]);
