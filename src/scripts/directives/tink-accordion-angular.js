@@ -71,12 +71,13 @@
                 element.find('.panel-title').html(header);
                 element.find('.accordion-loaded-content').html(content);
                 $compile(element.find('.panel-title'))(scope.$parent);
+                $compile(element.find('.accordion-loaded-content'))(scope.$parent);
               }else{
                 element.find('.panel-title').html('{{heading}}');
-                element.find('.accordion-loaded-content').html(clone);
+                element.find('.accordion-loaded-content').append(clone);
                 $compile(element.find('.panel-title'))(scope);
               }
-              $compile(element.find('.accordion-loaded-content'))(scope.$parent);
+             
             },scope);
 
            var states = {closed:1,open:2,loading:0};
