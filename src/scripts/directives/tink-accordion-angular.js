@@ -58,16 +58,22 @@
       scope: {             
         onclick:'=?',
         isCollapsed:'=',
-        hasPadding:'@'
+        hasPadding:'@',
+        heading:'@'
       },
       link: function(scope, element, attrs, accordionCtrl,transclude) {
 
         transclude(function(clone){
-          var header = $(clone).filter('data-header');
-          var content = $(clone).filter('data-content');
+          var header = $(clone).filter('data-header').contents();
+          var content = $(clone).filter('data-content').contents();
           console.log(header)
-          element.find('.panel-title').append(header);
-          element.find('.accordion-loaded-content').append(content);
+          if(typeof scope.heading !== 'string'){
+            element.find('.panel-title').append(header);
+            element.find('.accordion-loaded-content').append(content);
+          }else{
+            element.find('.panel-title').html(scope.heading);
+            element.find('.accordion-loaded-content').append(clone);
+          }
         },scope);
 
        var states = {closed:1,open:2,loading:0};
