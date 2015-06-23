@@ -73,9 +73,9 @@
                 element.find('.accordion-loaded-content').append(content);
               }else{
                 element.find('.panel-title').html('{{heading}}');
+                $compile(element.find('.panel-title'))(scope);
                 element.find('.accordion-loaded-content').append(clone);
               }
-              $compile(element)(scope);
             },scope);
 
            var states = {closed:1,open:2,loading:0};

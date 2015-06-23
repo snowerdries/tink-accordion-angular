@@ -19,7 +19,7 @@
 
   <div class="margin-bottom">
     <tink-accordion data-start-open="true">
-      <tink-accordion-panel data-heading="Basic accordion {{ctrl.testo}}" data-has-padding="true">
+      <tink-accordion-panel data-heading="Basic accordion {{ctrl.testf()}}" data-has-padding="true">
       <data-header>
       basic accordion
       </data-header>
@@ -215,7 +215,9 @@
 	myApp.controller('ctrlo', ['$scope', function($scope) {
 	  $scope.accordion = {collapsed:false};
     this.testo = 'helllllooooooo'
-    this.testf = function(){return 'gogogo'};
+    this.testf = function(){
+      return 'gogogo'
+    };
 	  $scope.openAccordion = function(status,go){
 	  	console.log('triggerd',status);
 	  	if(status === 'loading'){

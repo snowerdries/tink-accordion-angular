@@ -1,7 +1,7 @@
 {
   "name": "tink-accordion-angular",
   "description": "Tink accordion Angular directive",
-  "version": "1.2.3",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:tinkkit/tink-accordion-angular.git"
