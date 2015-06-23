@@ -65,17 +65,17 @@
           pre: function preLink(scope, element, attrs, accordionCtrl,transclude) {
 
             transclude(function(clone){
-              var header = $(clone).filter('data-header').contents();
+              var header = $(clone).filter('data-header').html();
               var content = $(clone).filter('data-content').contents();
-
               if(typeof scope.heading !== 'string'){
-                element.find('.panel-title').append(header);
-                element.find('.accordion-loaded-content').append(content);
+                element.find('.panel-title').html(header);
+                element.find('.accordion-loaded-content').html(content);
               }else{
                 element.find('.panel-title').html('{{heading}}');
-                $compile(element.find('.panel-title'))(scope);
-                element.find('.accordion-loaded-content').append(clone);
+                element.find('.accordion-loaded-content').html(clone);
               }
+              $compile(element.find('.panel-title'))(scope.$parent);
+              $compile(element.find('.accordion-loaded-content'))(scope.$parent);
             },scope);
 
            var states = {closed:1,open:2,loading:0};
@@ -198,7 +198,7 @@
             };
             accordionCtrl.addGroup(scope,element);
           }
-        }
+        };
       },
     };
   });
