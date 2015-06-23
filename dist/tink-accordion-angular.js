@@ -93,7 +93,7 @@
       }
     };
   })
-  .directive('tinkAccordionPanel', function() {
+  .directive('tinkAccordionPanel', function($compile) {
     return {
       require:'^tinkAccordion',         // We need this directive to be inside an accordion group
       restrict:'EA',
@@ -119,7 +119,9 @@
           }else{
             element.find('.panel-title').html(scope.heading);
             element.find('.accordion-loaded-content').append(clone);
+            $compile(element)(scope.$parent);
           }
+
         },scope);
 
        var states = {closed:1,open:2,loading:0};
