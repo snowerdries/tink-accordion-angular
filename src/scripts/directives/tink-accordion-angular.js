@@ -16,7 +16,7 @@
         oneAtATime:'='
       },
       template: '<div class="accordion" ng-transclude></div>',
-      compile: function compile(tElement, tAttrs, transclude) {
+      compile: function compile() {
         return {
           pre: function preLink(scope,element, attrs, accordionCtrl) {
             var options = {};
@@ -40,12 +40,11 @@
     return {
       restrict:'EA',
       priority: 1500.1,
-      compile:function(tElement){
-        var header = tElement.find('data-header');
-        var content = tElement.find('data-content');
-        console.log(tElement,tElement.find('.panel-title'))
+      compile:function(){
+        //var header = tElement.find('data-header');
+        //var content = tElement.find('data-content');
       }
-    }
+    };
   })
   .directive('tinkAccordionPanel', function() {
     return {
@@ -66,7 +65,7 @@
         transclude(function(clone){
           var header = $(clone).filter('data-header').contents();
           var content = $(clone).filter('data-content').contents();
-          console.log(header)
+
           if(typeof scope.heading !== 'string'){
             element.find('.panel-title').append(header);
             element.find('.accordion-loaded-content').append(content);
@@ -85,7 +84,7 @@
         }
 
         // The panel has padding or not?
-        scope.hasPadding = scope.hasPadding !== "false";
+        scope.hasPadding = scope.hasPadding !== 'false';
 
         scope.toggleOpen = function(){
           if(state === states.closed){
