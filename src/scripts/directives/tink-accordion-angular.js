@@ -60,143 +60,146 @@
         hasPadding:'@',
         heading:'@'
       },
-      link: function(scope, element, attrs, accordionCtrl,transclude) {
+      compile:function(){
+        return {
+          pre: function preLink(scope, element, attrs, accordionCtrl,transclude) {
 
-        transclude(function(clone){
-          var header = $(clone).filter('data-header').contents();
-          var content = $(clone).filter('data-content').contents();
+            transclude(function(clone){
+              var header = $(clone).filter('data-header').contents();
+              var content = $(clone).filter('data-content').contents();
 
-          if(typeof scope.heading !== 'string'){
-            element.find('.panel-title').append(header);
-            element.find('.accordion-loaded-content').append(content);
-          }else{
-            element.find('.panel-title').html(scope.heading);
-            element.find('.accordion-loaded-content').append(clone);
-            $compile(element)(scope.$parent);
-          }
+              if(typeof scope.heading !== 'string'){
+                element.find('.panel-title').append(header);
+                element.find('.accordion-loaded-content').append(content);
+              }else{
+                element.find('.panel-title').html('{{heading}}');
+                element.find('.accordion-loaded-content').append(clone);
+              }
+              $compile(element)(scope);
+            },scope);
 
-        },scope);
-
-       var states = {closed:1,open:2,loading:0};
-        var state = states.closed;
-        var trackToggle;
-        var onFunc = typeof scope.onclick === 'function';
-        if(!onFunc){
-          element.addClass('no-call-back');
-        }
-
-        // The panel has padding or not?
-        scope.hasPadding = scope.hasPadding !== 'false';
-
-        scope.toggleOpen = function(){
-          if(state === states.closed){
-            if(onFunc){
-              scope.loading();
-            }else{
-              scope.open();
+           var states = {closed:1,open:2,loading:0};
+            var state = states.closed;
+            var trackToggle;
+            var onFunc = typeof scope.onclick === 'function';
+            if(!onFunc){
+              element.addClass('no-call-back');
             }
-          }else if(state === states.open){
-            scope.close();
-          }else if(state === states.loading){
-            scope.cancel();
-          }
-        };
+
+            // The panel has padding or not?
+            scope.hasPadding = scope.hasPadding !== 'false';
+
+            scope.toggleOpen = function(){
+              if(state === states.closed){
+                if(onFunc){
+                  scope.loading();
+                }else{
+                  scope.open();
+                }
+              }else if(state === states.open){
+                scope.close();
+              }else if(state === states.loading){
+                scope.cancel();
+              }
+            };
 
 
-        if(attrs.isCollapsed){
-          if(attrs.isCollapsed === 'true' || attrs.isCollapsed === 'false'){
-            trackToggle = false;
-          }else{
-            trackToggle = true;
+            if(attrs.isCollapsed){
+              if(attrs.isCollapsed === 'true' || attrs.isCollapsed === 'false'){
+                trackToggle = false;
+              }else{
+                trackToggle = true;
+              }
+            }
+
+            if(trackToggle){
+              scope.$watch('isCollapsed',function(newVar){
+                if(newVar === true){
+                  stateClose();
+                }else if(newVar === false){
+                  stateOpen();
+                }
+              });
+            }
+
+            scope.open = function(){
+              if(trackToggle){
+                scope.isCollapsed = false;
+              }else{
+                stateOpen();
+              }
+            };
+
+            scope.close = function(){
+              if(trackToggle){
+                scope.isCollapsed = true;
+              }else{
+                stateClose();
+              }
+            };
+
+            scope.loading = function(){
+              if(trackToggle){
+                scope.isCollapsed = false;
+              }else{
+                stateLoad();
+              }
+            };
+
+            scope.cancel = function(){
+              if(trackToggle){
+                scope.isCollapsed = true;
+              }else{
+                cancelTrans();
+              }
+            };
+
+            var stateLoad = function(){
+              state = states.loading;
+              callback('loading',function(){
+                if(state === states.loading){
+                  stateOpen();
+                }
+              });
+              accordionCtrl.openGroup(element,scope);
+            };
+
+            var stateOpen = function(){
+              if((!onFunc && state === states.closed)||(onFunc && state === states.loading)){
+                state = states.open;
+                accordionCtrl.openGroup(element,scope);
+                callback('open');
+              }else if(onFunc && state === states.closed){
+                stateLoad();
+              }
+            };
+
+            var stateClose = function(){
+              if(state === states.open){
+                state = states.closed;
+                accordionCtrl.closeGroup(element);
+                callback('closed');
+              }else if(state === states.canceld){
+                cancelTrans();
+              }
+
+            };
+
+            var cancelTrans = function(){
+              state = states.closed;
+              accordionCtrl.closeGroup(element);
+               callback('canceld');
+            };
+
+            var callback = function(type,fn){
+              if(onFunc){
+                scope.onclick(type,fn);
+              }
+            };
+            accordionCtrl.addGroup(scope,element);
           }
         }
-
-        if(trackToggle){
-          scope.$watch('isCollapsed',function(newVar){
-            if(newVar === true){
-              stateClose();
-            }else if(newVar === false){
-              stateOpen();
-            }
-          });
-        }
-
-        scope.open = function(){
-          if(trackToggle){
-            scope.isCollapsed = false;
-          }else{
-            stateOpen();
-          }
-        };
-
-        scope.close = function(){
-          if(trackToggle){
-            scope.isCollapsed = true;
-          }else{
-            stateClose();
-          }
-        };
-
-        scope.loading = function(){
-          if(trackToggle){
-            scope.isCollapsed = false;
-          }else{
-            stateLoad();
-          }
-        };
-
-        scope.cancel = function(){
-          if(trackToggle){
-            scope.isCollapsed = true;
-          }else{
-            cancelTrans();
-          }
-        };
-
-        var stateLoad = function(){
-          state = states.loading;
-          callback('loading',function(){
-            if(state === states.loading){
-              stateOpen();
-            }
-          });
-          accordionCtrl.openGroup(element,scope);
-        };
-
-        var stateOpen = function(){
-          if((!onFunc && state === states.closed)||(onFunc && state === states.loading)){
-            state = states.open;
-            accordionCtrl.openGroup(element,scope);
-            callback('open');
-          }else if(onFunc && state === states.closed){
-            stateLoad();
-          }
-        };
-
-        var stateClose = function(){
-          if(state === states.open){
-            state = states.closed;
-            accordionCtrl.closeGroup(element);
-            callback('closed');
-          }else if(state === states.canceld){
-            cancelTrans();
-          }
-
-        };
-
-        var cancelTrans = function(){
-          state = states.closed;
-          accordionCtrl.closeGroup(element);
-           callback('canceld');
-        };
-
-        var callback = function(type,fn){
-          if(onFunc){
-            scope.onclick(type,fn);
-          }
-        };
-        accordionCtrl.addGroup(scope,element);
-      }
+      },
     };
   });
 })();
