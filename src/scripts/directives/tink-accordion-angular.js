@@ -70,11 +70,12 @@
               if(typeof scope.heading !== 'string'){
                 element.find('.panel-title').html(header);
                 element.find('.accordion-loaded-content').html(content);
+                $compile(element.find('.panel-title'))(scope.$parent);
               }else{
                 element.find('.panel-title').html('{{heading}}');
                 element.find('.accordion-loaded-content').html(clone);
+                $compile(element.find('.panel-title'))(scope);
               }
-              $compile(element.find('.panel-title'))(scope.$parent);
               $compile(element.find('.accordion-loaded-content'))(scope.$parent);
             },scope);
 
