@@ -65,13 +65,12 @@
           pre: function preLink(scope, element, attrs, accordionCtrl,transclude) {
 
             transclude(function(clone){
-              var header = $(clone).filter('data-header').html();
-              var content = $(clone).filter('data-content').contents();
+              var header = $(clone).filter('data-header');
+              var content = $(clone).filter('data-content');
               if(typeof scope.heading !== 'string'){
-                element.find('.panel-title').html(header);
-                element.find('.accordion-loaded-content').html(content);
-                $compile(element.find('.panel-title'))(scope.$parent);
-                $compile(element.find('.accordion-loaded-content'))(scope.$parent);
+                element.find('.panel-title').append(header);
+                element.find('.accordion-loaded-content').append(content);
+                //$compile(element.find('.panel-title'))(scope.$parent);
               }else{
                 element.find('.panel-title').html('{{heading}}');
                 element.find('.accordion-loaded-content').append(clone);
