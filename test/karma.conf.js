@@ -27,9 +27,9 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'src/scripts/controllers/format.js',
+      'bower_components/tink-api-angular/dist/tink-api-angular.js',
+      'bower_components/tink-api-javascript/dist/tink-api-javascript.js',
       'src/scripts/{,*/}*.js',
-      'src/{,*/}',
       'test/mock/{,*/}*.js',
       'test/spec/{,*/}*.js',
       'src/templates/{,*/}*.html'

@@ -1,5 +1,4 @@
 'use strict';
-
 describe('tinkaccordion', function() {
   beforeEach(module('tink.accordion'));
   beforeEach(module('templates'));
