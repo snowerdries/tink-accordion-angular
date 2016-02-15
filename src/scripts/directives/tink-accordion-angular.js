@@ -46,7 +46,7 @@
       }
     };
   })
-  .directive('tinkAccordionPanel', function($compile) {
+  .directive('tinkAccordionPanel', function($compile,$timeout) {
     return {
       require:'^tinkAccordion',         // We need this directive to be inside an accordion group
       restrict:'EA',
@@ -148,7 +148,7 @@
                 scope.isCollapsed = true;
               }else{
                 stateClose();
-              }
+              }              
             };
 
             scope.loading = function(){
@@ -189,7 +189,6 @@
             };
 
             var stateClose = function(){
-              removeContent();
               if(state === states.open){
                 state = states.closed;
                 accordionCtrl.closeGroup(element);
@@ -197,7 +196,9 @@
               }else if(state === states.canceld){
                 cancelTrans();
               }
-
+              $timeout(function(){
+                removeContent();
+              },1);
             };
 
             var cancelTrans = function(){
