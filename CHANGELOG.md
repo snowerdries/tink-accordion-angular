@@ -13,6 +13,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 -->
+## [2.0.0] - 2016-02-16
+
+### Changed
+- The dom is removed when the accordion is closed
+
 ## [1.2.2] - 2015-07-29
 
 ### Changed
