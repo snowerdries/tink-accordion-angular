@@ -63,13 +63,9 @@
       compile:function(){
         return {
           pre: function preLink(scope, element, attrs, accordionCtrl,transclude) {
-            var header,
-                content,
-                cloneObject;
-            transclude(function(clone){
-              header = $(clone).filter('data-header');
-              content = $(clone).filter('data-content');
-              cloneObject = clone;
+
+            transclude(function(clone,innerscope){
+              var header = $(clone).filter('data-header');
               if(typeof scope.heading !== 'string'){
                 element.find('.panel-title').append(header);
               }else{
@@ -79,16 +75,18 @@
             },scope);
 
             var insertContent = function(){
-              if(typeof scope.heading !== 'string'){
-                element.find('.accordion-loaded-content').append(content);
-                //$compile(element.find('.panel-title'))(scope.$parent);
-              }else{
-                element.find('.accordion-loaded-content').append(cloneObject);
-              }
+              transclude(function(clone,innerscope){
+                var content = $(clone).filter('data-content');
+                if(typeof scope.heading !== 'string'){
+                  element.find('.accordion-loaded-content').append(content);
+                }else{
+                  element.find('.accordion-loaded-content').append(clone);
+                }
+              });
             }
 
             var removeContent = function(){
-              element.find('.accordion-loaded-content').html('');
+              element.find('.accordion-loaded-content').empty();
             }
 
            var states = {closed:1,open:2,loading:0};
