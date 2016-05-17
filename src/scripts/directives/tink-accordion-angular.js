@@ -67,7 +67,7 @@
             transclude(function(clone,innerscope){
               var header = $(clone).filter('data-header');
               if(typeof scope.heading !== 'string'){
-                element.find('.panel-title').append(header);
+                element.find('.panel-title').html(header);
               }else{
                 element.find('.panel-title').html('{{heading}}');
                 $compile(element.find('.panel-title'))(scope);
@@ -78,9 +78,9 @@
               transclude(function(clone,innerscope){
                 var content = $(clone).filter('data-content');
                 if(typeof scope.heading !== 'string'){
-                  element.find('.accordion-loaded-content').append(content);
+                  element.find('.accordion-loaded-content').html(content);
                 }else{
-                  element.find('.accordion-loaded-content').append(clone);
+                  element.find('.accordion-loaded-content').html(clone);
                 }
               });
             }
