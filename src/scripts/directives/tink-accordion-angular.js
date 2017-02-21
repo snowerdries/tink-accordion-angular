@@ -54,7 +54,8 @@
       transclude:true,              // It transcludes the contents of the directive into the template
       replace: true,                // The element containing the directive will be replaced with the template
       templateUrl:'templates/tinkAccordionPanel.html',
-      scope: {             
+      scope: {  
+        isHighlighted:'=',            
         onclick:'=?',
         isCollapsed:'=',
         hasPadding:'@',
