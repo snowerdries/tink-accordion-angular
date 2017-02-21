@@ -1,6 +1,6 @@
 # Tink accordion Angular directive
 
-v1.2.6
+v1.3.0
 
 ## What is this repository for?
 

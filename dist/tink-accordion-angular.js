@@ -93,7 +93,7 @@
       }
     };
   })
-  .directive('tinkAccordionPanel', function($compile) {
+  .directive('tinkAccordionPanel', function($compile,$timeout) {
     return {
       require:'^tinkAccordion',         // We need this directive to be inside an accordion group
       restrict:'EA',
@@ -101,7 +101,8 @@
       transclude:true,              // It transcludes the contents of the directive into the template
       replace: true,                // The element containing the directive will be replaced with the template
       templateUrl:'templates/tinkAccordionPanel.html',
-      scope: {             
+      scope: {  
+        isHighlighted:'=',            
         onclick:'=?',
         isCollapsed:'=',
         hasPadding:'@',
@@ -111,20 +112,30 @@
         return {
           pre: function preLink(scope, element, attrs, accordionCtrl,transclude) {
 
-            transclude(function(clone){
+            transclude(function(clone,innerscope){
               var header = $(clone).filter('data-header');
-              var content = $(clone).filter('data-content');
               if(typeof scope.heading !== 'string'){
                 element.find('.panel-title').append(header);
-                element.find('.accordion-loaded-content').append(content);
-                //$compile(element.find('.panel-title'))(scope.$parent);
               }else{
                 element.find('.panel-title').html('{{heading}}');
-                element.find('.accordion-loaded-content').append(clone);
                 $compile(element.find('.panel-title'))(scope);
-              }
-             
+              }           
             },scope);
+
+            var insertContent = function(){
+              transclude(function(clone,innerscope){
+                var content = $(clone).filter('data-content');
+                if(typeof scope.heading !== 'string'){
+                  element.find('.accordion-loaded-content').append(content);
+                }else{
+                  element.find('.accordion-loaded-content').append(clone);
+                }
+              });
+            }
+
+            var removeContent = function(){
+              element.find('.accordion-loaded-content').empty();
+            }
 
            var states = {closed:1,open:2,loading:0};
             var state = states.closed;
@@ -183,7 +194,7 @@
                 scope.isCollapsed = true;
               }else{
                 stateClose();
-              }
+              }              
             };
 
             scope.loading = function(){
@@ -213,6 +224,7 @@
             };
 
             var stateOpen = function(){
+              insertContent();
               if((!onFunc && state === states.closed)||(onFunc && state === states.loading)){
                 state = states.open;
                 accordionCtrl.openGroup(element,scope);
@@ -230,7 +242,9 @@
               }else if(state === states.canceld){
                 cancelTrans();
               }
-
+              $timeout(function(){
+                removeContent();
+              },1);
             };
 
             var cancelTrans = function(){
@@ -254,7 +268,7 @@
   'use strict';
 
   $templateCache.put('templates/tinkAccordionPanel.html',
-    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <span class=panel-title></span> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content> </div> </div> </section>"
+    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div data-ng-class=\"{'accordion-panel-heading':true, 'accordion-panel-heading-highlighted':isHighlighted}\"> <span class=panel-title></span> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content> </div> </div> </section>"
   );
 
 }]);
