@@ -101,7 +101,8 @@
       transclude:true,              // It transcludes the contents of the directive into the template
       replace: true,                // The element containing the directive will be replaced with the template
       templateUrl:'templates/tinkAccordionPanel.html',
-      scope: {             
+      scope: {  
+        isHighlighted:'=',            
         onclick:'=?',
         isCollapsed:'=',
         hasPadding:'@',
@@ -267,7 +268,7 @@
   'use strict';
 
   $templateCache.put('templates/tinkAccordionPanel.html',
-    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div class=accordion-panel-heading> <span class=panel-title></span> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content> </div> </div> </section>"
+    "<section class=accordion-panel> <a href class=accordion-toggle ng-click=toggleOpen()> <div data-ng-class=\"{'accordion-panel-heading':true, 'accordion-panel-heading-highlighted':isHighlighted}\"> <span class=panel-title></span> </div> </a> <div class=accordion-panel-body data-ng-class=\"{'has-no-padding': hasPadding === 'false'}\"> <div class=accordion-loaded-content> </div> </div> </section>"
   );
 
 }]);
